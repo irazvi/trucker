@@ -31,7 +31,6 @@ public class ReadingController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Reading create(@RequestBody Reading reading) {
-        System.out.println("Creating Reading record");
         return service.create(reading);
     }
 }

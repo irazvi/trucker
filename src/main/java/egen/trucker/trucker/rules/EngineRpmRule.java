@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
-@Rule(name = "High Engine RPM", description = "If engine rpm > redline rpm")
+@Rule(name = "High Engine RPM", description = "If engine rpm > redLine rpm")
 @Component
 public class EngineRpmRule extends BasicRule {
     @Autowired
@@ -27,14 +27,14 @@ public class EngineRpmRule extends BasicRule {
     private AlertRepository alertRepository;
 
     @Condition
-    public boolean condition(@Fact("enginerpm") Reading reading) {
+    public boolean condition(@Fact("engineRpm") Reading reading) {
 
         Optional<Vehicle> existing = vehicleRepository.findByVin(reading.getVin());
         return existing.filter(vehicle -> reading.getEngineRpm() > vehicle.getRedlineRpm()).isPresent();
     }
 
     @Action
-    public void action(@Fact("enginerpm") Reading reading) {
+    public void action(@Fact("engineRpm") Reading reading) {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss.s");
         Alert alert = new Alert();

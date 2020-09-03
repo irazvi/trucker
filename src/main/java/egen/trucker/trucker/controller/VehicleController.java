@@ -35,7 +35,6 @@ public class VehicleController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Vehicle> update(@RequestBody List<Vehicle> vList) {
-        System.out.println("Receiving vehicles list with size:- "+vList.size());
         return (List<Vehicle>) service.update(vList);
     }
 

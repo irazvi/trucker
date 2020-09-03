@@ -27,14 +27,14 @@ public class EngineCoolantRule extends BasicRule {
     private AlertRepository alertRepository;
 
     @Condition
-    public boolean condition(@Fact("enginecoolant") Reading reading) {
+    public boolean condition(@Fact("engineCoolant") Reading reading) {
 
         Optional<Vehicle> existing = vehicleRepository.findByVin(reading.getVin());
         return existing.filter(vehicle -> reading.isCheckEngineLightOn() || reading.isEngineCoolantLow()).isPresent();
     }
 
     @Action
-    public void action(@Fact("enginecoolant") Reading reading) {
+    public void action(@Fact("engineCoolant") Reading reading) {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss.s");
         Alert alert = new Alert();
